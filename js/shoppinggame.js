@@ -1,14 +1,45 @@
 let gameComplete = false;
 // Define the three constants here
-
+const name = "unknown";
+const score = 0;
+const items = 0;
 // Define the player object here
-
+const player = {
+    name: name,
+    score: score,
+    items: items,
+    getCurrentScore() {
+        return this.score;
+    },
+    addPoints(points) {
+        this.score += points;
+    },
+    deductPoints(points) {
+        this.score -= points;
+    }
+}
 // Define the Product class - write the Constructor function for Product class here
+function Product (id, name, price, expiryDate) {
+        this.id = id
+        this.name = name
+        this.price = price
+        this.expiryDate = expiryDate
+}
+
 
 // Complete the dateDiff function
-const dateDiff = (date1, date2) => {};
+const dateDiff = (date1, date2) => {
+    let timeDiff = Math.abs(date1.getTime() - date2.getTime());
+    let daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return daysDiff;
+};
 
 // Here, use Object.defineProperty to create property - daysToExpire
+Object.defineProperty(Product.prototype, "daysToExpire", {
+    get () {
+        return dateDiff(this.expiryDate, new Date());
+    }
+})
 
 // Add method getDetails to Product here
 
